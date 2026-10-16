@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prénom Nom, graphiste</title>
+<meta name="description" content="Portfolio de Prénom Nom, graphiste indépendant : identité visuelle, édition, affiche.">
+
+<!--
+  COMMENT MODIFIER CE FICHIER
+  1. Remplace "Prénom Nom" et l'adresse e-mail (cherche-les avec Ctrl+F).
+  2. Crée un dossier "images" à côté de ce fichier et mets-y tes visuels
+     nommés projet-1.jpg, projet-2.jpg, etc. (ou change les noms ci-dessous).
+  3. Tant qu'une image est absente, un bloc de couleur s'affiche à sa place.
+  4. Pour changer les couleurs, modifie les valeurs juste en dessous
+     de ":root" dans le style.
+-->
+
+<style>
+  :root {
+    --paper: #F4F5F7;
+    --ink: #1E2140;
+    --muted: #5D6180;
+    --line: #D9DBE3;
+    --accent: #2F3CFF;
+    --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  a:hover { color: var(--accent); }
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+  .wrap { padding-inline: var(--gutter); max-width: 96rem; margin-inline: auto; }
+
+  /* En-tête */
+  header { display: flex; justify-content: space-between; align-items: baseline; padding-block: 1.5rem; }
+  header .brand { font-weight: 700; text-decoration: none; }
+  header nav { display: flex; gap: 1.75rem; }
+  header nav a { text-decoration: none; }
+  header nav a:hover { text-decoration: underline; }
+
+  /* Présentation : le nom occupe toute la largeur */
+  .hero { padding-block: clamp(2.5rem, 8vw, 7rem) clamp(2.5rem, 6vw, 5rem); }
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(3.4rem, 15.5vw, 13rem);
+    line-height: 0.86;
+    letter-spacing: -0.05em;
+    font-weight: 800;
+  }
+  .hero p {
+    max-width: 34rem;
+    margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: 1.35;
+    color: var(--muted);
+  }
+
+  /* Travaux */
+  h2 { margin: 0 0 1.5rem; font-size: 1.0625rem; font-weight: 700; }
+  .work {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2.5vw, 2rem);
+    align-items: start;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .work figure { grid-column: span 12; margin: 0; }
+  .frame { background: var(--c); aspect-ratio: var(--r); overflow: hidden; }
+  .frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  figcaption { margin-top: 0.75rem; }
+  figcaption strong { display: block; font-weight: 700; }
+  figcaption span { color: var(--muted); font-size: 0.95rem; }
+
+  @media (min-width: 760px) {
+    .w4 { grid-column: span 4 !important; }
+    .w5 { grid-column: span 5 !important; }
+    .w7 { grid-column: span 7 !important; }
+  }
+
+  /* À propos et contact */
+  section { padding-block: clamp(3rem, 8vw, 6rem) 0; }
+  .about { display: grid; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .about p { max-width: 38rem; margin: 0; font-size: 1.25rem; line-height: 1.45; }
+  @media (min-width: 760px) { .about { grid-template-columns: 5fr 7fr; } }
+
+  .contact { padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .contact a {
+    display: inline-block;
+    font-size: clamp(1.6rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+  }
+  .contact ul { display: flex; gap: 1.5rem; list-style: none; padding: 0; margin: 1.75rem 0 0; }
+  .contact ul a { font-size: 1.0625rem; font-weight: 400; letter-spacing: 0; }
+
+  footer { padding-block: 5rem 2rem; color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="brand" href="#haut">Prénom Nom</a>
+    <nav aria-label="Navigation principale">
+      <a href="#travaux">Travaux</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="haut">
+
+    <div class="hero">
+      <h1>Prénom<br>Nom</h1>
+      <p>Graphiste indépendant. Identité visuelle, édition et affiche pour des marques, des lieux culturels et des associations.</p>
+    </div>
+
+    <section id="travaux" style="padding-top:0">
+      <h2>Travaux</h2>
+      <div class="work">
+
+        <!-- Pour ajouter un projet : copie un bloc <figure>...</figure> et change le texte et le nom de l'image.
+             w4 / w5 / w7 = largeur sur grand écran (sur 12). --r = proportions de l'image (largeur/hauteur). -->
+
+        <figure class="w7">
+          <div class="frame" style="--c:#CBD2F7; --r:4/3"><img src="images/projet-1.jpg" alt="Description du projet 1" loading="lazy" onerror="this.remove()"></div>
+          <figcaption><strong>Titre du projet 1</strong><span>Identité visuelle, 2026</span></figcaption>
+        </figure>
+
+        <figure class="w5">
+          <div class="frame" style="--c:#E3E5EC; --r:3/4"><img src="images/projet-2.jpg" alt="Description du projet 2" loading="lazy" onerror="this.remove()"></div>
+          <figcaption><strong>Titre du projet 2</strong><span>Affiche, 2025</span></figcaption>
+        </figure>
+
+        <figure class="w4">
+          <div class="frame" style="--c:#B9C0EE; --r:1/1"><img src="images/projet-3.jpg" alt="Description du projet 3" loading="lazy" onerror="this.remove()"></div>
+          <figcaption><strong>Titre du projet 3</strong><span>Édition, 2025</span></figcaption>
+        </figure>
+
+        <figure class="w4">
+          <div class="frame" style="--c:#D9DDE8; --r:1/1"><img src="images/projet-4.jpg" alt="Description du projet 4" loading="lazy" onerror="this.remove()"></div>
+          <figcaption><strong>Titre du projet 4</strong><span>Packaging, 2024</span></figcaption>
+        </figure>
+
+        <figure class="w4">
+          <div class="frame" style="--c:#AEB6EA; --r:1/1"><img src="images/projet-5.jpg" alt="Description du projet 5" loading="lazy" onerror="this.remove()"></div>
+          <figcaption><strong>Titre du projet 5</strong><span>Identité visuelle, 2024</span></figcaption>
+        </figure>
+
+        <figure>
+          <div class="frame" style="--c:#EBEDF3; --r:16/7"><img src="images/projet-6.jpg" alt="Description du projet 6" loading="lazy" onerror="this.remove()"></div>
+          <figcaption><strong>Titre du projet 6</strong><span>Signalétique, 2023</span></figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <section id="apropos">
+      <div class="about">
+        <h2>À propos</h2>
+        <p>Je suis graphiste et je travaille depuis (ville). Je conçois des identités, des affiches et des livres. Remplace ce texte par quelques phrases sur ton parcours, ta manière de travailler et le type de projets que tu cherches.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <h2>Contact</h2>
+        <a href="mailto:contact@ton-nom-de-domaine.fr">contact@ton-nom-de-domaine.fr</a>
+        <ul>
+          <li><a href="https://www.behance.net/" rel="noopener">Behance</a></li>
+          <li><a href="https://www.instagram.com/" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>© 2026 Prénom Nom</footer>
+
+</div>
+</body>
+</html>
