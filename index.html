@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prénom Nom, graphiste</title>
+<meta name="description" content="Portfolio de Prénom Nom, graphiste indépendant : identité visuelle, édition, affiche.">
+
+<!--
+  COMMENT MODIFIER CE FICHIER
+  1. Remplace "Prénom Nom" et l'adresse e-mail (cherche-les avec Ctrl+F).
+  2. Crée un dossier "images" à côté de ce fichier et mets-y tes visuels
+     nommés projet-1.jpg, projet-2.jpg, etc. (ou change les noms ci-dessous).
+  3. Tant qu'une image est absente, un bloc de couleur s'affiche à sa place.
+  4. Pour changer les couleurs, modifie les valeurs juste en dessous
+     de ":root" dans le style.
+-->
+
+<style>
+  /* Typo Printvetica : place le fichier de la police dans un dossier "fonts"
+     à côté de ce fichier, sous le nom Printvetica.otf (ou Printvetica.woff2).
+     Tant qu'il est absent, le site utilise Helvetica / Arial à la place. */
+  @font-face {
+    font-family: "Printvetica";
+    src: url("fonts/Printvetica.woff2") format("woff2"),
+         url("fonts/Printvetica.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --font: "Printvetica", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --paper: #F4F5F7;
+    --ink: #1E2140;
+    --muted: #5D6180;
+    --line: #D9DBE3;
+    --accent: #2F3CFF;
+    --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    font-synthesis: none; /* évite le faux gras si la police n'a qu'une graisse */
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  a:hover { color: var(--accent); }
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+  .wrap { padding-inline: var(--gutter); max-width: 96rem; margin-inline: auto; }
+
+  /* En-tête */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    padding-block: 1.25rem;
+    background: var(--paper);
+  }
+  header nav { display: flex; justify-content: space-between; } /* onglets répartis sur toute la largeur */
+  header nav a { font-weight: 700; text-decoration: none; }
+  header nav a:hover { text-decoration: underline; }
+
+  /* GIF d'accueil : premier élément de la page */
+  .intro {
+    margin: 0;
+    background: #CBD2F7;
+    aspect-ratio: var(--r, 16/9); /* utilisé seulement tant que le GIF est absent */
+  }
+  .intro:has(img) { aspect-ratio: auto; }
+  .intro img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 82vh;
+    object-fit: contain;
+    margin-inline: auto;
+  }
+
+  /* Galerie : petites images et GIF sur 4 colonnes, de tailles différentes */
+  h2 { margin: 0 0 1.5rem; font-size: 1.0625rem; font-weight: 700; }
+  .gallery {
+    --g: clamp(0.5rem, 1.2vw, 1rem);
+    column-count: 2;
+    column-gap: var(--g);
+  }
+  @media (min-width: 760px)  { .gallery { column-count: 3; } }
+  @media (min-width: 1100px) { .gallery { column-count: 4; } }
+
+  .tile {
+    break-inside: avoid;
+    margin: 0 0 var(--g);
+    background: var(--c);
+    aspect-ratio: var(--r);   /* utilisé seulement tant que l'image est absente */
+    overflow: hidden;
+  }
+  .tile:has(img) { aspect-ratio: auto; } /* une vraie image garde ses propres proportions */
+  .tile img { display: block; width: 100%; height: auto; }
+
+  /* À propos et contact */
+  section { padding-block: clamp(3rem, 8vw, 6rem) 0; scroll-margin-top: 3.5rem; }
+  .cv { margin: 0 auto; max-width: 52rem; background: #E3E5EC; aspect-ratio: 210/297; } /* format A4 tant que l'image est absente */
+  .cv:has(img) { aspect-ratio: auto; }
+  .cv img { display: block; width: 100%; height: auto; }
+
+  .contact { padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .contact a {
+    display: inline-block;
+    font-size: clamp(1.6rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+  }
+  .contact ul { display: flex; gap: 1.5rem; list-style: none; padding: 0; margin: 1.75rem 0 0; }
+  .contact ul a { font-size: 1.0625rem; font-weight: 400; letter-spacing: 0; }
+
+  footer { padding-block: 5rem 2rem; color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header>
+    <nav aria-label="Navigation principale">
+      <a href="#projects">Projects</a>
+      <a href="#about">About me</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="haut">
+
+    <!-- Ton GIF : enregistre-le dans le dossier "images" sous le nom accueil.gif.
+         Tant qu'il est absent, un bloc de couleur s'affiche à sa place. -->
+    <figure class="intro">
+      <img src="images/accueil.gif" alt="Animation d'accueil : décris ici ce que montre ton GIF" onerror="this.remove()">
+    </figure>
+
+    <!-- GALERIE : chaque ligne <div class="tile">...</div> est une petite image ou un GIF.
+         - Mets tes fichiers dans le dossier "images" (galerie-01.jpg, galerie-02.jpg, ...).
+         - Pour un GIF, change simplement l'extension : src="images/galerie-04.gif".
+         - Pour ajouter une image, copie une ligne ; pour en retirer une, supprime-la.
+         - La taille de chaque image dépend de ses proportions : les formats variés donnent l'effet "mosaïque". -->
+    <section id="projects" aria-label="Projects" style="padding-top: clamp(1.5rem, 3.5vw, 3rem)">
+      <div class="gallery">
+      <div class="tile" style="--c:#CBD2F7; --r:1/1"><img src="images/galerie-01.PNG" alt="Visuel 1" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#E3E5EC; --r:4/5"><img src="images/galerie-02.PNG" alt="Visuel 2" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#B9C0EE; --r:1/1"><img src="images/galerie-03.PNG" alt="Visuel 3" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#D9DDE8; --r:3/4"><img src="images/galerie-04.PNG" alt="Visuel 4" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#AEB6EA; --r:16/10"><img src="images/galerie-05.PNG" alt="Visuel 5" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#EBEDF3; --r:3/2"><img src="images/galerie-06.PNG" alt="Visuel 6" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#CBD2F7; --r:4/3"><img src="images/galerie-07.GIF" alt="Visuel 7" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#E3E5EC; --r:2/3"><img src="images/galerie-08.PNG" alt="Visuel 8" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#B9C0EE; --r:1/1"><img src="images/galerie-09.PNG" alt="Visuel 9" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#D9DDE8; --r:4/5"><img src="images/galerie-10.PNG" alt="Visuel 10" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#AEB6EA; --r:1/1"><img src="images/galerie-11.PNG" alt="Visuel 11" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#EBEDF3; --r:3/4"><img src="images/galerie-12.PNG" alt="Visuel 12" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#CBD2F7; --r:16/10"><img src="images/galerie-13.PNG" alt="Visuel 13" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#E3E5EC; --r:3/2"><img src="images/galerie-14.PNG" alt="Visuel 14" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#B9C0EE; --r:4/3"><img src="images/galerie-15.PNG" alt="Visuel 15" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#D9DDE8; --r:2/3"><img src="images/galerie-16.PNG" alt="Visuel 16" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#AEB6EA; --r:1/1"><img src="images/galerie-17.PNG" alt="Visuel 17" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#EBEDF3; --r:4/5"><img src="images/galerie-18.PNG" alt="Visuel 18" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#CBD2F7; --r:1/1"><img src="images/galerie-19.PNG" alt="Visuel 19" loading="lazy" onerror="this.remove()"></div>
+      <div class="tile" style="--c:#E3E5EC; --r:3/4"><img src="images/galerie-20.PNG" alt="Visuel 20" loading="lazy" onerror="this.remove()"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT ME : ton CV en image. Enregistre-le dans le dossier "images" sous le nom cv.png.
+         Un clic sur l'image l'ouvre en grand dans un nouvel onglet. -->
+    <section id="about" aria-label="About me">
+      <figure class="cv">
+        <a href="images/cv.png" target="_blank" rel="noopener"><img src="images/cv.png" alt="Mon CV : remplace ce texte par un résumé de ton CV" onerror="this.closest('a').remove()"></a>
+      </figure>
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <h2>Contact</h2>
+        <a href="ninotekka@gmail.com">ninotekka@gmail.com</a>
+        <ul>
+          <li><a href="https://www.instagram.com/ninotekka/" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>© 2026 Ninotekka</footer>
+
+</div>
+</body>
+</html>
