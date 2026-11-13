@@ -1,0 +1,182 @@
+  /* Typo Printvetica : place le fichier de la police dans un dossier "fonts"
+     à côté de ce fichier, sous le nom Printvetica.otf (ou Printvetica.woff2).
+     Tant qu'il est absent, le site utilise Helvetica / Arial à la place. */
+  @font-face {
+    font-family: "Printvetica";
+    src: url("fonts/Printvetica.woff2") format("woff2"),
+         url("fonts/Printvetica.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --font: "Printvetica", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --paper: #F4F5F7;
+    --ink: #1E2140;
+    --muted: #5D6180;
+    --line: #D9DBE3;
+    --accent: #2F3CFF;
+    --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    font-synthesis: none; /* évite le faux gras si la police n'a qu'une graisse */
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  a:hover { color: var(--accent); }
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+  .wrap { padding-inline: var(--gutter); max-width: 96rem; margin-inline: auto; }
+
+  /* En-tête */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    padding-block: 1.25rem;
+    background: var(--paper);
+  }
+  header nav { display: flex; justify-content: space-between; } /* onglets répartis sur toute la largeur */
+  header nav a {
+    display: inline-block;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  header nav a:hover,
+  header nav a:focus-visible {
+    color: #8A8A90;                 /* gris au survol */
+    transform: translateY(-3px);    /* léger mouvement vers le haut */
+    text-decoration: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    header nav a { transition: none; }
+    header nav a:hover, header nav a:focus-visible { transform: none; }
+  }
+
+  /* GIF d'accueil : premier élément de la page */
+  .intro {
+    margin: 0;
+    background: #CBD2F7;
+    aspect-ratio: var(--r, 16/9); /* utilisé seulement tant que le GIF est absent */
+  }
+  .intro:has(img) { aspect-ratio: auto; background: none; } /* fond transparent : le GIF se fond dans la page */
+  .intro img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 82vh;
+    object-fit: contain;
+    margin-inline: auto;
+  }
+
+  /* Galerie : petites images et GIF sur 4 colonnes, de tailles différentes */
+  h2 { margin: 0 0 1.5rem; font-size: 1.0625rem; font-weight: 700; }
+  .gallery {
+    --g: clamp(0.5rem, 1.2vw, 1rem);
+    column-count: 2;
+    column-gap: var(--g);
+  }
+  @media (min-width: 760px)  { .gallery { column-count: 3; } }
+  @media (min-width: 1100px) { .gallery { column-count: 4; } }
+
+  .tile {
+    break-inside: avoid;
+    margin: 0 0 var(--g);
+    background: var(--c);
+    aspect-ratio: var(--r);   /* utilisé seulement tant que l'image est absente */
+    overflow: hidden;
+  }
+  .tile:has(img) { aspect-ratio: auto; background: none; } /* une vraie image garde ses propres proportions */
+  .tile img { display: block; width: 100%; height: auto; }
+
+  /* À propos et contact */
+  section { padding-block: clamp(3rem, 8vw, 6rem) 0; scroll-margin-top: 3.5rem; }
+  .cv { margin: 0 auto; max-width: 52rem; background: #E3E5EC; aspect-ratio: 210/297; } /* format A4 tant que l'image est absente */
+  .cv:has(img) { aspect-ratio: auto; background: none; }
+  .cv img { display: block; width: 100%; height: auto; }
+
+  .contact { padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .contact a {
+    display: inline-block;
+    font-size: clamp(1.1rem, 3vw, 1.75rem); /* taille de l'adresse e-mail */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-decoration: none; /* pas de soulignement */
+    overflow-wrap: anywhere;
+  }
+  .contact ul { display: flex; gap: 1.5rem; list-style: none; padding: 0; margin: 1.75rem 0 0; }
+  .contact ul a { font-size: 1.0625rem; font-weight: 400; letter-spacing: 0; }
+
+  footer { padding-block: 5rem 2rem; color: var(--muted); font-size: 0.9rem; }
+
+  /* ===== Pages Projects et détail d'un projet ===== */
+  .sub { padding-top: clamp(1.5rem, 4vw, 3rem); }
+
+  /* Liste des projets : une seule colonne */
+  .plist {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 56rem;
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  .plist a { display: block; text-decoration: none; }
+  .plist .cover { background: #E3E5EC; aspect-ratio: 4/3; overflow: hidden; } /* bloc gris tant que la couverture est absente */
+  .plist .cover:has(img) { aspect-ratio: auto; background: none; }
+  .plist img { display: block; width: 100%; height: auto; }
+  .plist .name { display: block; margin-top: 0.75rem; font-size: 1.25rem; font-weight: 700; transition: color 0.2s ease; }
+  .plist a:hover .name, .plist a:focus-visible .name { color: #8A8A90; }
+
+  /* Détail d'un projet */
+  .pdetail { max-width: 56rem; margin: 0 auto; }
+  .pdetail h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .pmeta { margin: 0.75rem 0 0; color: var(--muted); }
+  .pdesc { max-width: 38rem; margin: 1.5rem 0 0; font-size: 1.125rem; white-space: pre-line; }
+  .pimages { display: grid; gap: clamp(0.75rem, 2vw, 1.5rem); margin-top: 2.5rem; }
+  .pimages figure { margin: 0; }
+  .pimages img { display: block; width: 100%; height: auto; }
+  .pimages figcaption { margin-top: 0.5rem; color: var(--muted); font-size: 0.95rem; }
+  .pnav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 4rem auto 0;
+    padding-top: 1.5rem;
+    max-width: 56rem;
+    border-top: 1px solid var(--line);
+  }
+  .pnav a { font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+  .pnav a:hover { color: #8A8A90; }
+
+  footer a { text-decoration: none; }
+
+  /* ===== Page Contact ===== */
+  .cpage { max-width: 44rem; margin: 0 auto; }
+  .cpage figure { margin: 0; }
+  .cpage img { display: block; width: 100%; height: auto; }
+  .cpage p { max-width: 38rem; margin: 1.5rem 0 0; font-size: 1.25rem; line-height: 1.45; }
+  .cpage figure + p { margin-top: 2rem; }
+  .cpage .clinks { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 2.5rem; font-size: 1.0625rem; }
+  .cpage .clinks a { font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+  .cpage .clinks a:hover { color: #8A8A90; }
